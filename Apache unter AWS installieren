@@ -65,8 +65,8 @@
 	  aws ec2 describe-instances
 
 # 15. Login as ec2-user with this command for successful login to via SSH
-  	ssh -i schoeppach ec2-user@3.121.209.21
-      oder
+	  ssh -i schoeppach ec2-user@3.121.209.21
+    	     oder
 	  ssh -i schoeppach ec2-user@ec2-54-93-34-191.eu-central-1.compute.amazonaws.com
 	
 # 16. Check your network connections via HTTP
