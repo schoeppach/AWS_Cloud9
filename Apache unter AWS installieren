@@ -2,7 +2,9 @@
 
 --------------------------------------------------------------------------
 
-# Projekt erstellen
+# in AWS Anmelden https://us-east-1.console.aws.amazon.com/iamv2/home?region=eu-north-1#/home
+
+# mit Cloud9 verbinden und ein Projekt erstellen
 
 # Projektverzeichnis erstellen
 	mkdir AWS_CLI
@@ -79,4 +81,3 @@
 	
 # 16. Check your network connections via HTTP
 	sudo systemctl status httpd
-	
