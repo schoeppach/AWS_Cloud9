@@ -6,7 +6,7 @@
 
 # Projektverzeichnis erstellen
 	
-	**mkdir AWS_CLI**
+	> mkdir AWS_CLI
 
 # Textdatei für Ressourcen
 	
