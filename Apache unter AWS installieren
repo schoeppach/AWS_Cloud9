@@ -2,6 +2,14 @@
 
 --------------------------------------------------------------------------
 
+# Projekt erstellen
+
+# Projektverzeichnis erstellen
+	mkdir AWS_CLI
+
+# Textdatei für Ressourcen
+	toch ressources.txt
+
 ## Vorbereitungen
 
 # 1. Sicherheitsupdates installieren
@@ -14,16 +22,16 @@
 	  aws configure
 
 # 4. list all Configuration Data	
-  	aws configure list
+  	  aws configure list
 	
 # 5. You must select an AMI from which to launch the instance, either through the AWS EC2 console
 	  aws ec2 describe-images --owners amazon --filters "Name=name, Values=amzn2-ami-hvm-2.0.????????.?
-    -x86_64-gp2" "Name=state, Values=available" --query "reverse(sort_by(Images, &Name))
+    	  -x86_64-gp2" "Name=state, Values=available" --query "reverse(sort_by(Images, &Name))
 	  [:1].ImageId" --output text
 	
 # 6. Instance typ
 	  Now go to the AWS console and search for EC2. To the left of the screen, 
-  	from Instances/Instance Types — choose t2.mirco as this is the free tier.
+  	  from Instances/Instance Types — choose t2.mirco as this is the free tier.
 		
 # 7. Key Pair erstellen
 	  aws ec2 create-key-pair --key-name schoeppach --query 'KeyMaterial' --output text > schoeppach-apache.pem
@@ -32,7 +40,7 @@
 	  aws ec2 describe-key-pairs --key-name schoeppach
 
 # 9. Security Group
-  	aws ec2 create-security-group --group-name SchoeppachApache --description "Allows SSH and HTTP connections for the Web Server"
+  	  aws ec2 create-security-group --group-name SchoeppachApache --description "Allows SSH and HTTP connections for the Web Server"
 
 # 10. Now add rule to allow network traffic on TCP port 22 and TCP 80
 	  aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 22 --cidr 0.0.0.0/0
