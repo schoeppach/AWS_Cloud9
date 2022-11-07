@@ -13,42 +13,42 @@
 ## Vorbereitungen
 
 # 1. Sicherheitsupdates installieren
-	  sudo yum update -y
+	sudo yum update -y
 
 # 2. Check the currently installed CLI
-	  aws --version
+	aws --version
 
 # 3. AWS CLI Configured
-	  aws configure
+	aws configure
 
 # 4. list all Configuration Data	
-  	  aws configure list
+  	aws configure list
 	
 # 5. You must select an AMI from which to launch the instance, either through the AWS EC2 console
-	  aws ec2 describe-images --owners amazon --filters "Name=name, Values=amzn2-ami-hvm-2.0.????????.?
-    	  -x86_64-gp2" "Name=state, Values=available" --query "reverse(sort_by(Images, &Name))
-	  [:1].ImageId" --output text
+	aws ec2 describe-images --owners amazon --filters "Name=name, Values=amzn2-ami-hvm-2.0.????????.?
+    	-x86_64-gp2" "Name=state, Values=available" --query "reverse(sort_by(Images, &Name))
+	[:1].ImageId" --output text
 	
 # 6. Instance typ
-	  Now go to the AWS console and search for EC2. To the left of the screen, 
-  	  from Instances/Instance Types — choose t2.mirco as this is the free tier.
+	Now go to the AWS console and search for EC2. To the left of the screen, 
+  	from Instances/Instance Types — choose t2.mirco as this is the free tier.
 		
 # 7. Key Pair erstellen
-	  aws ec2 create-key-pair --key-name schoeppach --query 'KeyMaterial' --output text > schoeppach-apache.pem
+	aws ec2 create-key-pair --key-name schoeppach --query 'KeyMaterial' --output text > schoeppach-apache.pem
 
 # 8. Key Pair anzeigen
-	  aws ec2 describe-key-pairs --key-name schoeppach
+	aws ec2 describe-key-pairs --key-name schoeppach
 
 # 9. Security Group
-  	  aws ec2 create-security-group --group-name SchoeppachApache --description "Allows SSH and HTTP connections for the Web Server"
+  	aws ec2 create-security-group --group-name SchoeppachApache --description "Allows SSH and HTTP connections for the Web Server"
 
 # 10. Now add rule to allow network traffic on TCP port 22 and TCP 80
-	  aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 22 --cidr 0.0.0.0/0
+	aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 22 --cidr 0.0.0.0/0
 
-	  aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 80 --cidr 0.0.0.0/0
+	aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 80 --cidr 0.0.0.0/0
 
 # 11. Now verify the rules created for security group
-	  aws ec2 describe-security-groups --group-ids sg-08cd0d53e3574cc4a
+	aws ec2 describe-security-groups --group-ids sg-08cd0d53e3574cc4a
 
 ----------------------------------------------------------------------
 
@@ -57,26 +57,26 @@
 # 12. Create Apache script — webscript.sh in your C://Users/
 	  <your user name> folder and type in these commands, save and exit.
 
-	  #!/bin/bash
-	  yum update -y
-	  yum install httpd -y
-	  systemctl start httpd
-	  systemctl enable httpd
+	#!/bin/bash
+	yum update -y
+	yum install httpd -y
+	systemctl start httpd
+	systemctl enable httpd
 
 # 13. At last, create a EC2 instance, by running this command
-	  aws ec2 run-instances --image-id ami-070b208e993b59cea --count 1 
-	  --instance-type t2.micro --key-name schoeppach 
-	  --security-group-ids sg-08cd0d53e3574cc4a 
-	  --user-data file://webscript.sh
+	aws ec2 run-instances --image-id ami-070b208e993b59cea --count 1 
+	--instance-type t2.micro --key-name schoeppach 
+	--security-group-ids sg-08cd0d53e3574cc4a 
+	--user-data file://webscript.sh
 	
 # 14. Verify your installed EC2 instance and Apache Webserver
-	  aws ec2 describe-instances
+	aws ec2 describe-instances
 
 # 15. Login as ec2-user with this command for successful login to via SSH
-	  ssh -i schoeppach ec2-user@3.121.209.21
+	ssh -i schoeppach ec2-user@3.121.209.21
     	     oder
-	  ssh -i schoeppach ec2-user@ec2-54-93-34-191.eu-central-1.compute.amazonaws.com
+	ssh -i schoeppach ec2-user@ec2-54-93-34-191.eu-central-1.compute.amazonaws.com
 	
 # 16. Check your network connections via HTTP
-	  sudo systemctl status httpd
+	sudo systemctl status httpd
 	
