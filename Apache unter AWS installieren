@@ -34,13 +34,13 @@
   	from Instances/Instance Types — choose t2.mirco as this is the free tier.
 		
 # 7. Key Pair erstellen
-	aws ec2 create-key-pair --key-name schoeppach --query 'KeyMaterial' --output text > schoeppach-apache.pem
+	aws ec2 create-key-pair --key-name IHR-KEY --query 'KeyMaterial' --output text > IHR-KEY.pem
 
 # 8. Key Pair anzeigen
-	aws ec2 describe-key-pairs --key-name schoeppach
+	aws ec2 describe-key-pairs --key-name IHR-KEY
 
 # 9. Security Group
-  	aws ec2 create-security-group --group-name SchoeppachApache --description "Allows SSH and HTTP connections for the Web Server"
+  	aws ec2 create-security-group --group-name IHRE-SECURE-GROUP --description "Allows SSH and HTTP connections for the Web Server"
 
 # 10. Now add rule to allow network traffic on TCP port 22 and TCP 80
 	aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 22 --cidr 0.0.0.0/0
@@ -65,7 +65,7 @@
 
 # 13. At last, create a EC2 instance, by running this command
 	aws ec2 run-instances --image-id ami-070b208e993b59cea --count 1 
-	--instance-type t2.micro --key-name schoeppach 
+	--instance-type t2.micro --key-name IHR-KEY 
 	--security-group-ids sg-08cd0d53e3574cc4a 
 	--user-data file://webscript.sh
 	
