@@ -2,7 +2,11 @@
 
 --------------------------------------------------------------------------
 
-# in AWS Anmelden https://us-east-1.console.aws.amazon.com/iamv2/home?region=eu-north-1#/home
+# Anleitung online
+	https://towardsaws.com/how-to-use-aws-cli-to-launch-an-ec2-web-server-with-apache-9c20d07e07be
+
+# in AWS Anmelden 
+	https://us-east-1.console.aws.amazon.com/iamv2/home?region=eu-north-1#/home
 
 # mit Cloud9 verbinden und ein Projekt erstellen
 
