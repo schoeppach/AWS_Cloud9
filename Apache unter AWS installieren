@@ -17,16 +17,16 @@
 # 1. Sicherheitsupdates installieren
 	sudo yum update -y
 
-# 2. Check the currently installed CLI
+# 2. Check die momentan installierte Version
 	aws --version
 
-# 3. AWS CLI Configured
+# 3. AWS CLI konfigurieren
 	aws configure
 
-# 4. list all Configuration Data	
+# 4. Liste der konfigurierten Dateien	
   	aws configure list
 	
-# 5. You must select an AMI from which to launch the instance, either through the AWS EC2 console
+# 5. AMI Nummer suchen mit der die EC2 Instance gebaut wurde
 	aws ec2 describe-images --owners amazon --filters "Name=name, Values=amzn2-ami-hvm-2.0.????????.?
     	-x86_64-gp2" "Name=state, Values=available" --query "reverse(sort_by(Images, &Name))
 	[:1].ImageId" --output text
