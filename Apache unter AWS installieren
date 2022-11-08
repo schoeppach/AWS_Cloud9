@@ -1,87 +1,89 @@
-# Apache unter AWS installieren
+# Apache auf einer EC2 unter AWS installieren
 
 --------------------------------------------------------------------------
 
-# Anleitung online
+# Usefull Links
+
+## Anleitung online
 	https://towardsaws.com/how-to-use-aws-cli-to-launch-an-ec2-web-server-with-apache-9c20d07e07be
 
-# in AWS Anmelden 
+## in AWS Anmelden 
 	https://us-east-1.console.aws.amazon.com/iamv2/home?region=eu-north-1#/home
 
-# mit Cloud9 verbinden und ein Projekt erstellen
+-----------------------------------------------------------------
 
-# Projektverzeichnis erstellen
+# Vorbereitungen mit Cloud9 verbinden und ein Projekt erstellen
+
+## Projektverzeichnis erstellen
 	mkdir AWS_CLI
 
-# Textdatei für Ressourcen
+## Textdatei für Ressourcen
 	toch ressources.txt
 
-## Vorbereitungen
-
-# 1. Sicherheitsupdates installieren
+## 1. Sicherheitsupdates installieren
 	sudo yum update -y
 
-# 2. Check die momentan installierte Version
+## 2. Check die momentan installierte Version
 	aws --version
 
-# 3. AWS CLI konfigurieren
+## 3. AWS CLI konfigurieren
 	aws configure
 
-# 4. Liste der konfigurierten Dateien	
+## 4. Liste der konfigurierten Dateien	
   	aws configure list
 	
-# 5. AMI Nummer suchen mit der die EC2 Instance gebaut wurde
+## 5. AMI Nummer suchen mit der die EC2 Instance gebaut wurde
 	aws ec2 describe-images --owners amazon --filters "Name=name, Values=amzn2-ami-hvm-2.0.????????.?
     	-x86_64-gp2" "Name=state, Values=available" --query "reverse(sort_by(Images, &Name))
 	[:1].ImageId" --output text
 	
-# 6. Instance typ
+## 6. Instance typ
 	Now go to the AWS console and search for EC2. To the left of the screen, 
   	from Instances/Instance Types — choose t2.mirco as this is the free tier.
 		
-# 7. Key Pair erstellen
+## 7. Key Pair erstellen
 	aws ec2 create-key-pair --key-name IHR-KEY --query 'KeyMaterial' --output text > IHR-KEY.pem
 
-# 8. Key Pair anzeigen
+## 8. Key Pair anzeigen
 	aws ec2 describe-key-pairs --key-name IHR-KEY
 
-# 9. Security Group
+## 9. Security Group
   	aws ec2 create-security-group --group-name IHRE-SECURE-GROUP --description "Allows SSH and HTTP connections for the Web Server"
 
-# 10. Now add rule to allow network traffic on TCP port 22 and TCP port 80 and TCP port 433
+## 10. Now add rule to allow network traffic on TCP port 22 and TCP port 80 and TCP port 433
 	aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 22 --cidr 0.0.0.0/0
 
 	aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 80 --cidr 0.0.0.0/0
 	
 	aws ec2 authorize-security-group-ingress --group-id sg-08cd0d53e3574cc4a --protocol tcp --port 433 --cidr 0.0.0.0/0
 
-# 11. Now verify the rules created for security group
+## 11. Now verify the rules created for security group
 	aws ec2 describe-security-groups --group-ids sg-08cd0d53e3574cc4a
 
 ----------------------------------------------------------------------
 
-###  Create EC2 instance with a script to launch Apache Webserver.
+#  Create EC2 instance with a script to launch Apache Webserver.
 
-# 12. Create Apache script with nano — webscript.sh in your C://Users/ <your user name> folder and type in these commands, save and exit.
+## 12. Create Apache script with nano — webscript.sh in your C://Users/ <your user name> folder and type in these commands, save and exit.
     	#!/bin/bash
 	yum update -y
 	yum install httpd -y
 	systemctl start httpd
 	systemctl enable httpd
 
-# 13. At last, create a EC2 instance, by running this command1 
+## 13. At last, create a EC2 instance, by running this command1 
 	aws ec2 run-instances --image-id ami-070b208e993b59cea --count 
 	--instance-type t2.micro --key-name IHR-KEY 
 	--security-group-ids sg-08cd0d53e3574cc4a 
 	--user-data file://webscript.sh
 	
-# 14. Verify your installed EC2 instance and Apache Webserver
+## 14. Verify your installed EC2 instance and Apache Webserver
 	aws ec2 describe-instances
 
-# 15. Login as ec2-user with this command for successful login to via SSH
+## 15. Login as ec2-user with this command for successful login to via SSH
 	ssh -i IHR-USERNAME ec2-user@3.121.209.21
     	     oder
 	ssh -i IHR-USERNAME ec2-user@ec2-54-93-34-191.eu-central-1.compute.amazonaws.com
 	
-# 16. Check your network connections via HTTP
+## 16. Check your network connections via HTTP
 	sudo systemctl status httpd
