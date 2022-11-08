@@ -103,9 +103,11 @@
 
 #### 17. Login als EC2-user mit dem ssh Kommando
 	
-	ssh -i IHR-USERNAME ec2-user@3.121.209.21
-    	     oder
-	ssh -i IHR-USERNAME ec2-user@ec2-54-93-34-191.eu-central-1.compute.amazonaws.com
+	ssh -i IHR-KEY.pem ec2-user@3.121.209.21
+	
+#### 18. Führen Sie diesen Befehl bei Bedarf aus, um sicherzustellen, dass der Schlüssel nicht öffentlich sichtbar ist
+	
+	chmod 400 IHR-KEY.pem
 	
 #### 18. Netzwerk Verbindung checken über HTTP
 	
