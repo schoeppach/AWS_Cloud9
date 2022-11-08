@@ -6,7 +6,7 @@
 
 #### Anleitung online
 	
-[Link](https://towardsaws.com/how-to-use-aws-cli-to-launch-an-ec2-web-server-with-apache-9c20d07e07be)
+(https://towardsaws.com/how-to-use-aws-cli-to-launch-an-ec2-web-server-with-apache-9c20d07e07be)
 
 #### in AWS Anmelden 
 	
