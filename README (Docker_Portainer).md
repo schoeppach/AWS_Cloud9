@@ -1,4 +1,4 @@
-by_schoeppach
+$\color[rgb]{1,0,1} created: schoeppach
 
 # Docker-Compose Portainer (Wordpress)
 
