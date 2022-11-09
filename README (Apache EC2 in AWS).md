@@ -113,7 +113,7 @@
 	
 	sudo systemctl status httpd
 	
-## ssh Sicherheit verbessern mit vim
+# ssh Sicherheit verbessern mit vim
 	
 #### puplic key anzeigen
 	cat .ssh/authorized_keys
