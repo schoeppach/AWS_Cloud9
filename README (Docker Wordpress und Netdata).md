@@ -1,5 +1,6 @@
+$\color[rgb]{1,0,1} created: schoeppach$
 
-# Docker auf ArchoLinux installieren, Docker erstellen
+# Docker auf ArchoLinux installieren, Docker erstellen Wordpress Netdata
 
 ## Vorraussetzung ist eine Maschiene mit ssh Verbindung
 
