@@ -1,4 +1,4 @@
-$\color[rgb]{1,0,1} created: ingeniebrio77$
+$\color[rgb]{1,0,1} documented: ingeniebrio77$
 
 ### AWS CLI Series - How to use CloudFormation
 [Link](https://amlanscloud.com/awscliseries1/)
