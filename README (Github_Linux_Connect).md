@@ -1,9 +1,4 @@
-Titel:      Dokumentattion von Git/Github Repository
-Date:       03-11-2022
-Author:     Renato Palavecino
-Co Author:  Maik Schoeppach
-Keywords:   Git, Github, Linux
-
+$\color[rgb]{1,0,1} documented:  schoeppach$
 
 used Linux Distribution:   https://linuxmint.com/
 
