@@ -1,4 +1,4 @@
-$\color[rgb]{1,0,1} created: schoeppach
+$\color[rgb]{1,0,1} created: schoeppach$
 
 # Docker-Compose Portainer (Wordpress)
 
