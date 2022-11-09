@@ -55,7 +55,7 @@
 		--security-opt apparmor=unconfined \
 		netdata/netdata
 		
-### im Terminal eingeben und durchlaufen lassen	
+### Netdata installieren im Terminal eingeben und durchlaufen lassen	
 
 		sudo docker run -d --name=netdata \
 		-p 19999:19999 \
