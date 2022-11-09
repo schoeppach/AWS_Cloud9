@@ -1,5 +1,5 @@
 
-$\color[rgb]{1,0,1} created: spruehhack$
+$\color[rgb]{1,0,1} documented: spruehhack$
 
 
 # Create-an-IPv4-enabled-VPC-and-subnets-using-the-AWS-CLI
