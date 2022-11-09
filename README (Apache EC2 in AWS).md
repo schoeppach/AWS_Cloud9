@@ -1,4 +1,4 @@
-$\color[rgb]{1,0,1} created: schoeppach$
+$\color[rgb]{1,0,1} documented: schoeppach$
 
 # Apache Webserver auf einer EC2 in AWS installieren
 
