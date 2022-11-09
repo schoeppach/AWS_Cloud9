@@ -113,4 +113,19 @@
 	
 	sudo systemctl status httpd
 	
+## ssh Sicherheit verbessern mit vim
+	
+#### puplic key anzeigen
+	cat .ssh/authorized_keys
+
+#### normaler ec2 user	
+	whoami
+	
+#### Backup vom key ertsellen auf dem home verzeichnis
+	sudo cp /etc/ssh/sshd_config sshd_config_original
+
+#### Textdatei bearbeiten	
+	sudo vim /etc/ssh/sshd_config
+	(:i bearbeiten, esc bearbeiten aus,:q! beenden erzwingen, :qw speichern und beenden)
+	
 Finish
