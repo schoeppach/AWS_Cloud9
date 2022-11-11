@@ -1,4 +1,3 @@
-$\color[rgb]{1,0,1} documented: schoeppach$
 
 # Jellyfish install
 
